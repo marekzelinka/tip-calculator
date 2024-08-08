@@ -1,4 +1,5 @@
 import { FormProvider, useForm } from 'react-hook-form'
+import { Results } from './components/Results.jsx'
 import { TipForm } from './components/TipForm.jsx'
 import { tipOptions } from './utils.js'
 
@@ -22,6 +23,13 @@ function App() {
             <FormProvider {...methods}>
               <TipForm />
             </FormProvider>
+          </div>
+          <div className="p-2 max-lg:-mt-2 lg:w-full lg:max-w-md lg:flex-none">
+            <div className="rounded-md bg-gray-50 p-6 ring-1 ring-inset ring-gray-900/5 lg:flex lg:h-full lg:flex-col">
+              <FormProvider {...methods}>
+                <Results />
+              </FormProvider>
+            </div>
           </div>
         </div>
       </div>
