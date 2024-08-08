@@ -1,3 +1,4 @@
+import { ArrowPathIcon } from '@heroicons/react/20/solid'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Results } from './components/Results.jsx'
 import { TipForm } from './components/TipForm.jsx'
@@ -8,6 +9,8 @@ function App() {
     mode: 'onChange',
     defaultValues: { bill: '', tip: tipOptions[3].value, peopleCount: '' },
   })
+
+  const handleReset = () => methods.reset()
 
   return (
     <main className="isolate flex min-h-svh flex-col justify-center bg-gray-50 py-12 sm:px-6 lg:px-8">
@@ -29,6 +32,22 @@ function App() {
               <FormProvider {...methods}>
                 <Results />
               </FormProvider>
+              <div className="mt-10 flex flex-col lg:mt-auto">
+                <button
+                  type="button"
+                  onClick={handleReset}
+                  disabled={!methods.formState.isValid}
+                  className="relative rounded-md bg-gray-900 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 disabled:pointer-events-none disabled:opacity-50"
+                >
+                  <div
+                    className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
+                    aria-hidden
+                  >
+                    <ArrowPathIcon className="size-5 text-gray-400" />
+                  </div>
+                  Reset
+                </button>
+              </div>
             </div>
           </div>
         </div>
