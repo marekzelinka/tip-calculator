@@ -1,12 +1,23 @@
 import { UsersIcon } from '@heroicons/react/20/solid'
+import { forwardRef, useImperativeHandle, useRef } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { tipOptions } from '../utils.js'
 
-export function TipForm() {
+export const TipForm = forwardRef((_props, ref) => {
   const {
     register,
     formState: { errors },
   } = useFormContext()
+
+  const { ref: registerBillRef, ...registerBillProps } = register('bill')
+
+  const billInputRef = useRef(null)
+
+  useImperativeHandle(ref, () => {
+    return {
+      focusBillInput: () => billInputRef.current?.focus(),
+    }
+  }, [])
 
   return (
     <form>
@@ -26,6 +37,10 @@ export function TipForm() {
               <span className="text-gray-500 sm:text-sm">$</span>
             </div>
             <input
+              ref={(ref) => {
+                billInputRef.current = ref
+                registerBillRef(ref)
+              }}
               type="number"
               id="bill"
               step={0.01}
@@ -33,11 +48,7 @@ export function TipForm() {
               placeholder="0.00"
               aria-invalid={errors.bill ? true : undefined}
               aria-describedby="bill-error"
-              {...register('bill', {
-                min: { value: 0.01, message: 'Must be greater than 0' },
-                required: { value: true, message: 'Required' },
-                valueAsNumber: true,
-              })}
+              {...registerBillProps}
             />
             <div
               className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3"
@@ -122,4 +133,5 @@ export function TipForm() {
       </div>
     </form>
   )
-}
+})
+TipForm.displayName = 'TipForm'

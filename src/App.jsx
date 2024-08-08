@@ -1,4 +1,5 @@
 import { ArrowPathIcon } from '@heroicons/react/20/solid'
+import { useRef } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Results } from './components/Results.jsx'
 import { TipForm } from './components/TipForm.jsx'
@@ -10,7 +11,12 @@ function App() {
     defaultValues: { bill: '', tip: tipOptions[3].value, peopleCount: '' },
   })
 
-  const handleReset = () => methods.reset()
+  const tipFormRef = useRef(null)
+
+  const handleReset = () => {
+    methods.reset()
+    tipFormRef.current?.focusBillInput()
+  }
 
   return (
     <main className="isolate flex min-h-svh flex-col justify-center bg-gray-50 py-12 sm:px-6 lg:px-8">
@@ -24,7 +30,7 @@ function App() {
         <div className="bg-white p-2 shadow sm:rounded-lg lg:flex">
           <div className="p-8 sm:p-10 lg:flex-auto">
             <FormProvider {...methods}>
-              <TipForm />
+              <TipForm ref={tipFormRef} />
             </FormProvider>
           </div>
           <div className="p-2 max-lg:-mt-2 lg:w-full lg:max-w-md lg:flex-none">
