@@ -21,10 +21,15 @@ function App() {
   return (
     <main className="isolate flex min-h-svh flex-col justify-center bg-gray-50 py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h1 className="mt-8 text-balance text-center text-2xl/9 font-bold tracking-tight text-gray-900">
-          Split your expenses with your{' '}
-          <span className="text-emerald-600">friends & colleagues</span>
+        <h1 className="text-balance text-center text-2xl/9 font-bold tracking-tight text-gray-900">
+          Tip Calculator
         </h1>
+        <p className="mt-2 text-pretty text-center text-sm/6 text-gray-500">
+          Split your expenses with your{' '}
+          <span className="font-semibold text-emerald-600">
+            friends & colleagues
+          </span>
+        </p>
       </div>
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px] lg:max-w-4xl">
         <div className="bg-white p-2 shadow sm:rounded-lg lg:flex">
