@@ -26,7 +26,7 @@ This project is a simple tip calculator web app. It's written in JavaScript and 
 
 ## Goals
 
-I wanted to practice using React with form inputs.
+I wanted to practice using React with a form state managment library like `react-hook-form`.
 
 ## Credits
 

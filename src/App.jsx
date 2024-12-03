@@ -1,22 +1,23 @@
-import { ArrowPathIcon } from '@heroicons/react/20/solid'
-import { useRef } from 'react'
-import { FormProvider, useForm } from 'react-hook-form'
-import { Results } from './components/Results.jsx'
-import { TipForm } from './components/TipForm.jsx'
-import { tipOptions } from './utils.js'
+import { Button } from "@headlessui/react";
+import { ArrowPathIcon } from "@heroicons/react/16/solid";
+import { useRef } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import { Results } from "./components/Results.jsx";
+import { TipForm } from "./components/TipForm.jsx";
+import { tipOptions } from "./utils.js";
 
 function App() {
   const methods = useForm({
-    mode: 'onChange',
-    defaultValues: { bill: '', tip: tipOptions[3].value, peopleCount: '' },
-  })
+    mode: "onChange",
+    defaultValues: { bill: "", tip: tipOptions[3].value, peopleCount: "" },
+  });
 
-  const tipFormRef = useRef(null)
+  const tipFormRef = useRef(null);
 
   const handleReset = () => {
-    methods.reset()
-    tipFormRef.current?.focusBillInput()
-  }
+    methods.reset();
+    tipFormRef.current?.focusBillInput();
+  };
 
   return (
     <main className="isolate flex min-h-svh flex-col justify-center bg-gray-50 py-12 sm:px-6 lg:px-8">
@@ -24,8 +25,8 @@ function App() {
         <h1 className="text-balance text-center text-2xl/9 font-bold tracking-tight text-gray-900">
           Tip Calculator
         </h1>
-        <p className="mt-2 text-pretty text-center text-sm/6 text-gray-500">
-          Split your expenses with your{' '}
+        <p className="mt-2 text-pretty text-center text-sm/6 text-gray-600">
+          Split your expenses with your{" "}
           <span className="font-semibold text-emerald-600">
             friends & colleagues
           </span>
@@ -44,27 +45,27 @@ function App() {
                 <Results />
               </FormProvider>
               <div className="mt-10 flex flex-col lg:mt-auto">
-                <button
+                <Button
                   type="button"
                   onClick={handleReset}
                   disabled={!methods.formState.isValid}
-                  className="relative rounded-md bg-gray-900 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 disabled:pointer-events-none disabled:opacity-50"
+                  className="relative rounded-md bg-gray-900 px-3 py-2 text-sm font-semibold text-white shadow-sm data-[disabled]:pointer-events-none data-[hover]:bg-gray-700 data-[disabled]:opacity-50 data-[focus]:outline data-[focus]:outline-2 data-[focus]:outline-offset-2 data-[focus]:outline-gray-900"
                 >
                   <div
                     className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
                     aria-hidden
                   >
-                    <ArrowPathIcon className="size-5 text-gray-400" />
+                    <ArrowPathIcon className="size-4 text-gray-400" />
                   </div>
                   Reset
-                </button>
+                </Button>
               </div>
             </div>
           </div>
         </div>
       </div>
     </main>
-  )
+  );
 }
 
-export default App
+export default App;
