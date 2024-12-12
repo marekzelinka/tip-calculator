@@ -7,7 +7,6 @@ export function Results() {
     formState: { isValid },
   } = useFormContext();
   const { bill, tip, peopleCount } = watch();
-  console.log({ bill, tip, peopleCount });
 
   const tipPerPerson = isValid ? (bill * tip) / peopleCount : 0;
   const totalPerPerson = isValid ? bill / peopleCount + tipPerPerson : 0;
