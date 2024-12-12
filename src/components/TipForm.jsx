@@ -92,38 +92,6 @@ export const TipForm = forwardRef((_props, ref) => {
             ))}
           </RadioGroup>
         </fieldset>
-        {/* <div className="grid gap-2">
-          <label
-            htmlFor="tip"
-            className="block text-sm/6 font-medium text-gray-900"
-          >
-            Select tip %
-          </label>
-          <div>
-            <Select
-              id="tip"
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 data-[invalid]:text-red-900 data-[focus]:ring-2 data-[focus]:ring-inset data-[focus]:ring-emerald-600 data-[invalid]:data-[focus]:ring-red-500 data-[invalid]:ring-red-300 data-[invalid]:placeholder:text-red-300 sm:text-sm/6"
-              data-invalid={errors.bill ? true : undefined}
-              aria-invalid={errors.tip ? true : undefined}
-              aria-describedby="tip-error"
-              {...register("tip", {
-                required: { value: true, message: "Required" },
-                valueAsNumber: true,
-              })}
-            >
-              {tipOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </Select>
-          </div>
-          {errors.tip ? (
-            <p id="tip-error" className="text-sm text-red-600">
-              {errors.tip.message?.toString()}
-            </p>
-          ) : null}
-        </div> */}
         <div className="grid gap-2">
           <label
             htmlFor="peopleCount"
