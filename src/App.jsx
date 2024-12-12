@@ -1,15 +1,19 @@
-import { Button } from "@headlessui/react";
-import { ArrowPathIcon } from "@heroicons/react/16/solid";
+import { ArrowPathIcon } from "@heroicons/react/20/solid";
 import { useRef } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import { Form } from "./components/Form.jsx";
 import { Results } from "./components/Results.jsx";
-import { TipForm } from "./components/TipForm.jsx";
 import { tipOptions } from "./utils.js";
 
 function App() {
   const methods = useForm({
     mode: "onChange",
-    defaultValues: { bill: "", tip: tipOptions[3].value, peopleCount: "" },
+    defaultValues: {
+      bill: "",
+      tip: tipOptions[3].value,
+      customTip: "",
+      peopleCount: "",
+    },
   });
 
   const tipFormRef = useRef(null);
@@ -20,14 +24,14 @@ function App() {
   };
 
   return (
-    <main className="isolate flex min-h-svh flex-col justify-center bg-gray-50 py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+    <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h1 className="text-balance text-center text-2xl/9 font-bold tracking-tight text-gray-900">
           Tip Calculator
         </h1>
-        <p className="mt-2 text-pretty text-center text-sm/6 text-gray-600">
+        <p className="mt-2 text-pretty text-center text-sm/6 text-gray-500">
           Split your expenses with your{" "}
-          <span className="font-semibold text-emerald-600">
+          <span className="font-semibold text-teal-600">
             friends & colleagues
           </span>
         </p>
@@ -36,7 +40,7 @@ function App() {
         <div className="bg-white p-2 shadow sm:rounded-lg lg:flex">
           <div className="p-8 sm:p-10 lg:flex-auto">
             <FormProvider {...methods}>
-              <TipForm ref={tipFormRef} />
+              <Form ref={tipFormRef} />
             </FormProvider>
           </div>
           <div className="p-2 max-lg:-mt-2 lg:w-full lg:max-w-md lg:flex-none">
@@ -45,26 +49,26 @@ function App() {
                 <Results />
               </FormProvider>
               <div className="mt-10 flex flex-col lg:mt-auto">
-                <Button
+                <button
                   type="button"
                   onClick={handleReset}
                   disabled={!methods.formState.isValid}
-                  className="relative rounded-md bg-gray-900 px-3 py-2 text-sm font-semibold text-white shadow-sm data-[disabled]:pointer-events-none data-[hover]:bg-gray-700 data-[disabled]:opacity-50 data-[focus]:outline data-[focus]:outline-2 data-[focus]:outline-offset-2 data-[focus]:outline-gray-900"
+                  className="relative inline-flex items-center justify-center gap-x-1.5 rounded-md bg-gray-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-500 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-gray-600 disabled:pointer-events-none disabled:opacity-50"
                 >
                   <div
                     className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
                     aria-hidden
                   >
-                    <ArrowPathIcon className="size-4 text-gray-400" />
+                    <ArrowPathIcon className="size-5 text-gray-400" />
                   </div>
                   Reset
-                </Button>
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }
 

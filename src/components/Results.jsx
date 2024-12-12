@@ -2,17 +2,18 @@ import { useFormContext } from "react-hook-form";
 import { formatCurrency } from "../utils.js";
 
 export function Results() {
-  const {
-    watch,
-    formState: { isValid },
-  } = useFormContext();
-  const { bill, tip, peopleCount } = watch();
+  const { watch } = useFormContext();
+  const { bill, tip, customTip, peopleCount } = watch();
 
-  const tipPerPerson = isValid ? (bill * tip) / peopleCount : 0;
+  const isValid = validateValues({ bill, tip, customTip, peopleCount });
+
+  const tipPerPerson = isValid
+    ? (bill * (tip || customTip / 100)) / peopleCount
+    : 0;
   const totalPerPerson = isValid ? bill / peopleCount + tipPerPerson : 0;
 
   const stats = [
-    { name: "Tip", value: tipPerPerson },
+    { name: "Tip amount", value: tipPerPerson },
     { name: "Total", value: totalPerPerson },
   ];
 
@@ -48,4 +49,13 @@ export function Results() {
       })}
     </dl>
   );
+}
+
+function validateValues({ bill, tip, customTip, peopleCount }) {
+  const isValidBill = !isNaN(bill) && bill > 0;
+  const isValidPeopleCount = !isNaN(peopleCount) && peopleCount > 0;
+  const isValidTip =
+    (!isNaN(tip) && tip > 0) || (!isNaN(customTip) && customTip > 0);
+
+  return isValidBill && isValidPeopleCount && isValidTip;
 }
