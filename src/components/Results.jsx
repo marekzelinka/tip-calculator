@@ -55,7 +55,7 @@ function validateValues({ bill, tip, customTip, peopleCount }) {
   const isValidBill = !isNaN(bill) && bill > 0;
   const isValidPeopleCount = !isNaN(peopleCount) && peopleCount > 0;
   const isValidTip =
-    (!isNaN(tip) && tip > 0) || (!isNaN(customTip) && customTip > 0);
+    (!isNaN(tip) && tip >= 0) || (!isNaN(customTip) && customTip >= 0);
 
   return isValidBill && isValidPeopleCount && isValidTip;
 }

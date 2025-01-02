@@ -94,17 +94,20 @@ export const Form = forwardRef((_props, ref) => {
                 </div>
               ))}
               <div className="flex items-center rounded-md bg-white px-3 outline outline-1 -outline-offset-1 outline-gray-300 focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-teal-600 has-[aria-[invalid]]:outline-red-300 has-[input[aria-invalid]]:outline-red-300 focus-within:has-[input[aria-invalid]]:outline-red-600">
+                <div className="shrink-0 select-none text-base text-gray-500 sm:text-sm/6">
+                  %
+                </div>
                 <input
                   type="number"
-                  className="block min-w-0 grow py-1.5 pl-3 pr-1 text-right text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 aria-[invalid]:text-red-900 aria-[invalid]:placeholder:text-red-300 sm:text-sm/6"
+                  className="block min-w-0 grow py-1.5 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 aria-[invalid]:text-red-900 aria-[invalid]:placeholder:text-red-300 sm:text-sm/6"
                   placeholder="Custom"
                   aria-label="Custom tip"
                   aria-invalid={errors.customTip ? true : undefined}
                   aria-describedby="customTip-error"
                   {...register("customTip", {
                     min: {
-                      value: 1,
-                      message: "Custom tip must be greater than 0",
+                      value: 0,
+                      message: "Custom tip must be 0 or more",
                     },
                     valueAsNumber: true,
                     onChange: () => {
@@ -112,9 +115,6 @@ export const Form = forwardRef((_props, ref) => {
                     },
                   })}
                 />
-                <div className="shrink-0 select-none text-base text-gray-500 sm:text-sm/6">
-                  %
-                </div>
               </div>
             </div>
             {errors.customTip ? (
