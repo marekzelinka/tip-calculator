@@ -25,20 +25,20 @@ export function Results() {
         return (
           <div key={stat.name} data-disabled={disabled}>
             <dt
-              className="text-sm/6 font-medium text-gray-500 data-[disabled]:opacity-50"
+              className="text-sm/6 font-medium text-gray-500 data-disabled:opacity-50"
               data-disabled={disabled}
             >
               {stat.name}
             </dt>
             <dd className="mt-2 flex items-baseline gap-2">
               <span
-                className="text-3xl/10 font-medium tracking-tight text-gray-900 data-[disabled]:opacity-50"
+                className="text-3xl/10 font-medium tracking-tight text-gray-900 data-disabled:opacity-50"
                 data-disabled={disabled}
               >
                 {formatCurrency(stat.value)}
               </span>
               <span
-                className="text-xs font-medium text-gray-700 data-[disabled]:opacity-50"
+                className="text-xs font-medium text-gray-700 data-disabled:opacity-50"
                 data-disabled={disabled}
               >
                 / person
